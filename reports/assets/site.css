@@ -207,16 +207,35 @@ rect.picked, circle.picked { outline: 0; stroke: var(--selected); stroke-width: 
 .net-legend .pill canvas { display: block; }
 .net-legend p { margin: 0 0 var(--space-1); }
 
-/* open.lokanetra.dev/reports/, Disseminations of Reports. Follows interlace.css in assets/site.css, tokens only. */
+/* open.lokanetra.dev: reports and footer pages. Follows interlace.css in assets/site.css, tokens only. Layout after
+   iea.org: a white top bar, a full-width hero with the title, full-width bands, cards with room to breathe. */
 @font-face { font-family: 'Alte Haas Grotesk'; src: url('fonts/AlteHaasGroteskRegular.ttf') format('truetype'); font-weight: 400; }
-body { margin: 0; font-family: var(--font); }
-.site-head { padding: var(--space-3) var(--space-4) 0; }
-.site-head .brand { display: inline-flex; margin: 0 0 var(--space-3); }
-.site-head .brand img { height: 20px; }
-.glass { display: flex; align-items: center; gap: var(--space-2); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-main { max-width: 960px; margin: 0 auto; padding: var(--space-6) var(--space-4) var(--space-8); display: flex; flex-direction: column; gap: var(--space-4); }
+body { margin: 0; font-family: var(--font); background: var(--surface); }
+.wrap { box-sizing: border-box; max-width: 1280px; margin: 0 auto; padding: 0 var(--space-8); }
+/* Top bar */
+.topbar { border-bottom: 1px solid var(--line); }
+.topbar .wrap { display: flex; align-items: center; justify-content: space-between; gap: var(--space-4); min-height: 72px; }
+.topbar .brand { margin: 0; }
+.topbar .brand img { height: 40px; }
+.topbar nav a { font-size: 16px; color: var(--text); text-decoration: none; }
+.topbar nav a:hover { text-decoration: underline; }
+/* Hero: the mosaic runs edge to edge; title and crumbs sit on glass so they keep their contrast */
+.hero { background: var(--subtle) center / cover no-repeat; image-rendering: pixelated; }
+.hero .wrap { display: flex; align-items: flex-end; min-height: 320px; padding-top: var(--space-8); padding-bottom: var(--space-8); }
+.hero-box { display: flex; flex-direction: column; gap: var(--space-3); max-width: 880px; padding: var(--space-6) var(--space-8); border-radius: var(--radius-panel);
+  background: color-mix(in srgb, var(--surface) 92%, transparent); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); }
+.crumbs { font-size: 14px; }
+.hero-h { margin: 0; font-size: clamp(32px, 5vw, 52px); line-height: 1.08; letter-spacing: -.02em; font-weight: 400; }
+.hero-sub { margin: 0; font-size: 20px; line-height: 26px; color: var(--text-2); }
+/* Content */
+main { box-sizing: border-box; max-width: 1280px; margin: 0 auto; padding: var(--space-8) var(--space-8) 64px; display: flex; flex-direction: column; gap: var(--space-4); }
 main:focus { outline: 0; }
-main:has(.doc) { max-width: 1200px; }
+main:has(> .band) { max-width: none; padding: 0; gap: 0; }
+.band { padding: 56px 0 64px; }
+.band-alt { background: var(--subtle); }
+.band > .wrap { display: flex; flex-direction: column; gap: var(--space-6); }
+.band-h { margin: 0; font-size: 32px; line-height: 38px; letter-spacing: -.02em; font-weight: 400; }
+.toolbar { border-bottom: 1px solid var(--line); }
 .doc { display: grid; grid-template-columns: minmax(0, 1fr) 208px; gap: var(--space-8); align-items: start; }
 .doc-main { display: flex; flex-direction: column; gap: var(--space-4); min-width: 0; }
 /* On this page. Its top matches html scroll-padding-top in interlace.css, where a heading lands after a jump. */
@@ -239,32 +258,47 @@ main:has(.doc) { max-width: 1200px; }
 .md table { border-collapse: collapse; }
 .md th, .md td { padding: var(--space-1) var(--space-2); border-bottom: 1px solid var(--line); text-align: left; }
 .md code { font-family: var(--mono); font-size: 14px; }
+.byline { font-size: 16px; line-height: 24px; }
 .byline p, .card p, .search p, .site-foot p { margin: 0; }
 .actions { display: flex; flex-wrap: wrap; gap: var(--space-2); }
-/* Reports list, after Mantine's Card, TextInput, Table and Pagination */
-.search { display: flex; flex-direction: column; gap: var(--space-1); }
-.search-row { display: flex; flex-wrap: wrap; align-items: center; gap: var(--space-2) var(--space-3); }
-.search-box { position: relative; flex: 1 1 280px; max-width: 480px; }
-.search-box svg { position: absolute; left: var(--space-3); top: 50%; transform: translateY(-50%); color: var(--text-2); pointer-events: none; }
-.search-box input { box-sizing: border-box; width: 100%; min-height: 44px; padding: 0 var(--space-3) 0 calc(var(--space-3) * 2 + 16px); font: inherit; font-size: 16px; color: var(--text); background: var(--surface); border: 1px solid var(--line-strong); border-radius: var(--radius-control); }
-.search-row .btn { min-height: 44px; }
-.cards { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 260px), 1fr)); gap: var(--space-3); }
-.card { position: relative; }
+/* Search bar under the hero */
+.search { display: flex; flex-wrap: wrap; align-items: center; gap: var(--space-2) var(--space-4); padding-top: var(--space-4); padding-bottom: var(--space-4); }
+.search label { font-size: 16px; }
+.search-box { position: relative; flex: 1 1 280px; max-width: 520px; }
+.search-box svg { position: absolute; left: var(--space-4); top: 50%; transform: translateY(-50%); color: var(--text-2); pointer-events: none; }
+.search-box input { box-sizing: border-box; width: 100%; min-height: 48px; padding: 0 var(--space-4) 0 calc(var(--space-4) * 2 + 16px); font: inherit; font-size: 16px; color: var(--text); background: var(--surface); border: 1px solid var(--line-strong); border-radius: 999px; }
+.search .btn { min-height: 44px; border-radius: 999px; padding: 0 var(--space-4); }
+#found { font-size: 16px; }
+/* Cards on the grey band. The title link covers the card, so the whole card opens the report. */
+.cards { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 300px), 1fr)); gap: var(--space-6); }
+.card { position: relative; display: flex; flex-direction: column; gap: var(--space-3); min-height: 320px; box-sizing: border-box; padding: var(--space-6); background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius-panel); }
 .card:hover { border-color: var(--line-strong); }
-.card h2 a::after { content: ''; position: absolute; inset: 0; } /* the whole card opens the report */
-.search[hidden], .cards[hidden], .sec[hidden] { display: none; }
-.list { font-size: 14px; }
-.list td { white-space: normal; padding-top: var(--space-1); padding-bottom: var(--space-1); }
-.list td:last-child { white-space: nowrap; }
-.pager { display: flex; flex-wrap: wrap; gap: var(--space-1); }
+.card:focus-within { outline: 2px solid var(--line-strong); outline-offset: 2px; }
+.card-h { margin: 0; font-size: 24px; line-height: 30px; letter-spacing: -.01em; font-weight: 400; }
+.card-h a { color: var(--text); text-decoration: none; }
+.card-h a:focus-visible { outline: 0; }
+.card-h a::after { content: ''; position: absolute; inset: 0; }
+.card:hover .card-h a { text-decoration: underline; }
+.card-by { font-size: 14px; color: var(--text-2); }
+.card-text { font-size: 16px; line-height: 24px; color: var(--text-2); }
+.card-foot { margin-top: auto; display: flex; flex-direction: column; gap: var(--space-3); }
+.card .chip { border-radius: 999px; padding: 2px 10px; }
+.pager { display: flex; flex-wrap: wrap; gap: var(--space-2); }
 .pager:empty { display: none; }
-.pager .btn { min-width: 36px; min-height: 36px; }
+.pager .btn { display: inline-flex; align-items: center; justify-content: center; min-width: 44px; min-height: 44px; padding: 0 var(--space-4); border-radius: 999px; font-size: 14px; }
 .pager .btn[aria-current] { background: var(--accent); color: var(--on-accent); border-color: var(--accent); }
-.site-foot nav { display: flex; flex-wrap: wrap; gap: var(--space-1) var(--space-4); margin-bottom: var(--space-2); }
 .data { width: 100%; border-collapse: collapse; font-size: 13px; }
 .data th, .data td { padding: 2px var(--space-2); height: 28px; border-bottom: 1px solid var(--line); text-align: left; white-space: nowrap; }
 .data thead th { color: var(--text-2); background: var(--subtle); font-size: 12px; }
 .data .num { text-align: right; font-variant-numeric: tabular-nums; }
+/* Earlier reports */
+.list { font-size: 16px; }
+.list th, .list td { height: auto; padding: var(--space-3) var(--space-4) var(--space-3) 0; }
+.list thead th { background: none; font-size: 14px; border-bottom-color: var(--line-strong); }
+.list td { white-space: normal; }
+.list td:last-child { white-space: nowrap; color: var(--text-2); }
+.list td:nth-child(2) { color: var(--text-2); }
+.list tbody tr:hover { background: var(--canvas); }
 details summary { cursor: pointer; color: var(--accent); padding: var(--space-1) 0; }
 a.btn { display: inline-flex; align-items: center; text-decoration: none; }
 .tabs { display: flex; gap: var(--space-4); border-bottom: 1px solid var(--line); }
@@ -275,13 +309,27 @@ a.btn { display: inline-flex; align-items: center; text-decoration: none; }
 @media screen { .tabpanel > .sec:first-child { padding-top: 0; border-top: 0; } } /* the tab bar draws the line */
 .hit { cursor: auto; } /* in the Suite a mark opens its tweets; the site carries no tweets */
 .preview { position: sticky; top: 0; z-index: 2; margin: 0; padding: var(--space-2) var(--space-4); background: var(--emphasis); color: var(--on-emphasis); }
-.site-foot { max-width: 960px; margin: 0 auto; padding: var(--space-4); border-top: 1px solid var(--line); }
+/* Footer band. Links take --text: teal on --subtle fails contrast. */
+.site-foot { background: var(--subtle); border-top: 1px solid var(--line); font-size: 14px; color: var(--text-2); }
+.site-foot .wrap { display: flex; flex-direction: column; gap: var(--space-3); padding-top: var(--space-8); padding-bottom: var(--space-8); }
+.site-foot nav { display: flex; flex-wrap: wrap; gap: var(--space-2) var(--space-6); }
+.site-foot a { color: var(--text); }
+@media (max-width: 599px) {
+  .wrap, main { padding-left: var(--space-4); padding-right: var(--space-4); }
+  main:has(> .band) { padding: 0; }
+  .hero .wrap { min-height: 220px; padding-top: var(--space-6); padding-bottom: var(--space-4); }
+  .hero-box { padding: var(--space-4); }
+  .band { padding: var(--space-8) 0 40px; }
+  .band-h { font-size: 24px; line-height: 30px; }
+  .card { min-height: 0; }
+}
 @media print {
-  .skip, .preview, .noprint, details, .site-head .cover { display: none; }
+  .skip, .preview, .noprint, details, .topbar, .crumbs, .toolbar { display: none; }
   .tabpanel[hidden] { display: flex; } /* the PDF carries every tab */
   * { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
-  body { background: var(--surface); }
-  main, main:has(.doc) { max-width: none; padding: var(--space-4) 0; }
+  .hero { background: none; }
+  .hero .wrap, main { min-height: 0; max-width: none; padding: var(--space-4) 0; }
+  .hero-box { padding: 0; background: none; backdrop-filter: none; -webkit-backdrop-filter: none; }
   .doc { display: block; }
   .chart-box { overflow: visible; }
   .chart-box svg { width: 100%; height: auto; }

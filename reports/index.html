@@ -10,12 +10,15 @@
 <body>
 <a class="skip" href="#main">Skip to content</a>
 
-<header class="site-head">
-<a class="brand" href="./"><img src="assets/lokanetra.png" alt="Lokanetra Information Observatory"></a>
-<div class="cover" style="background-image:url(assets/cover.png)"><nav class="glass" aria-label="Breadcrumb"><span aria-current="page">Disseminations of Reports</span></nav></div>
+<header>
+<div class="topbar"><div class="wrap">
+<a class="brand" href="../"><img src="assets/lokanetra.png" alt="Lokanetra Information Observatory, home"></a>
+<nav aria-label="Site"><a href="./">Reports</a></nav>
+</div></div>
+<div class="hero" style="background-image:url(assets/cover.png)"><div class="wrap"><div class="hero-box"><h1 class="hero-h">Disseminations of Reports</h1><p class="hero-sub">1 report</p></div></div></div>
 </header>
 <main id="main" tabindex="-1">
-<h1 class="h1">Disseminations of Reports</h1><div class="search" id="search" hidden><label for="q">Search reports</label><div class="search-row"><div class="search-box"><svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><circle cx="11" cy="11" r="7" fill="none" stroke="currentColor" stroke-width="2"/><path d="m20 20-4-4" stroke="currentColor" stroke-width="2"/></svg><input id="q" type="search" autocomplete="off" placeholder="Title or introduction"></div><button type="button" class="btn" id="clear" hidden>Clear search</button><p id="found" aria-live="polite"></p></div></div><ul class="cards" id="cards"><li class="panel card"><p class="label">19 October 2026</p><h2 class="h2"><a href="20261019-83f7/">Danantara-related buzzer activity on Danantara Trust Indonesia launch</a></h2><p>On 17/9/2026, we have detected a significant activity on Twitter on a possible amplification of certain keywords related to Danantara Trust Indonesia. Two keywords that came to.</p></li></ul><section class="sec" id="list" aria-labelledby="list-h" hidden><h2 class="sec-h" id="list-h">Earlier reports</h2><div class="chart-box"><table class="data list"><thead><tr><th scope="col">Title</th><th scope="col">Authors</th><th scope="col">Published</th></tr></thead><tbody><tr data-q="danantara-related buzzer activity on danantara trust indonesia launch on 17/9/2026, we have detected a significant activity on twitter on a possible amplification of certain keywords related to danantara trust indonesia. two keywords that came to our attention are &quot;danantara trust indonesia&quot; and #baktinyatadanantara. at a glance, these two keywords can be perceived as an amplified trending topic. we suspect this amplification was carried out to build a perception of public trust in relation to the philanthropic arm of danantara." hidden><td><a href="20261019-83f7/">Danantara-related buzzer activity on Danantara Trust Indonesia launch</a></td><td></td><td>19 October 2026</td></tr></tbody></table></div><nav class="pager" id="pager" aria-label="Pages"></nav></section><script>(() => {
+<div class="toolbar" id="search" hidden><div class="wrap search"><label for="q">Search reports</label><div class="search-box"><svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><circle cx="11" cy="11" r="7" fill="none" stroke="currentColor" stroke-width="2"/><path d="m20 20-4-4" stroke="currentColor" stroke-width="2"/></svg><input id="q" type="search" autocomplete="off" placeholder="Title or introduction"></div><button type="button" class="btn" id="clear" hidden>Clear search</button><p id="found" aria-live="polite"></p></div></div><section class="band band-alt" id="cards" aria-labelledby="latest-h"><div class="wrap"><h2 class="band-h" id="latest-h">Latest reports</h2><ul class="cards"><li class="card"><h3 class="card-h"><a href="20261019-83f7/">Danantara-related buzzer activity on Danantara Trust Indonesia launch</a></h3><p class="card-text">On 17/9/2026, we have detected a significant activity on Twitter on a possible amplification of certain keywords related to Danantara Trust Indonesia.</p><div class="card-foot"><div><span class="chip">#BaktiNyataDanantara</span><span class="chip">Danantara Trust Indonesia</span></div><p class="label">19 October 2026</p></div></li></ul></div></section><section class="band" id="list" aria-labelledby="list-h" hidden><div class="wrap"><h2 class="band-h" id="list-h">Earlier reports</h2><div class="chart-box"><table class="data list"><thead><tr><th scope="col">Title</th><th scope="col">Authors</th><th scope="col">Published</th></tr></thead><tbody><tr data-q="danantara-related buzzer activity on danantara trust indonesia launch on 17/9/2026, we have detected a significant activity on twitter on a possible amplification of certain keywords related to danantara trust indonesia. two keywords that came to our attention are &quot;danantara trust indonesia&quot; and #baktinyatadanantara. at a glance, these two keywords can be perceived as an amplified trending topic. we suspect this amplification was carried out to build a perception of public trust in relation to the philanthropic arm of danantara." hidden><td><a href="20261019-83f7/">Danantara-related buzzer activity on Danantara Trust Indonesia launch</a></td><td></td><td>19 October 2026</td></tr></tbody></table></div><nav class="pager" id="pager" aria-label="Pages"></nav></div></section><script>(() => {
   const q = document.getElementById('q'), found = document.getElementById('found'), clear = document.getElementById('clear');
   const cards = document.getElementById('cards'), list = document.getElementById('list'), pager = document.getElementById('pager');
   const rows = [...list.querySelectorAll('tbody tr')], per = 10;
@@ -33,7 +36,7 @@
     found.textContent = !words.length ? '' : hits.length ? `${hits.length} ${hits.length === 1 ? 'report' : 'reports'} found`
       : 'No reports match. Try other words.';
     clear.hidden = !words.length;
-    // ponytail: one button per page, fine for a few dozen pages; add gaps like Mantine's Pagination past that
+    // ponytail: one button per page, fine for a few dozen pages; add gaps between numbers past that
     pager.replaceChildren(...(pages > 1 ? ['prev', ...Array.from({length: pages}, (_, i) => i + 1), 'next'] : []).map(p => {
       const b = Object.assign(document.createElement('button'), {type: 'button', className: 'btn',
         textContent: {prev: 'Previous', next: 'Next'}[p] || p});
@@ -62,6 +65,6 @@
   draw();
 })();</script>
 </main>
-<footer class="site-foot label"><p>Lokanetra Information Observatory. Made with Interlace Suite.</p></footer>
+<footer class="site-foot"><div class="wrap"><nav aria-label="Legal"><a href="../privacy/">Privacy policy</a><a href="../tos/">Terms of service</a><a href="../disclaimer/">Disclaimer</a></nav><p>Lokanetra Information Observatory. Made with Interlace Suite.</p></div></footer>
 </body>
 </html>
