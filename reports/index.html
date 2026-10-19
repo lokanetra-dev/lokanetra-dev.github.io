@@ -15,8 +15,53 @@
 <div class="cover" style="background-image:url(assets/cover.png)"><nav class="glass" aria-label="Breadcrumb"><span aria-current="page">Disseminations of Reports</span></nav></div>
 </header>
 <main id="main" tabindex="-1">
-<h1 class="h1">Disseminations of Reports</h1><ul class="report-list"><li class="panel"><h2 class="h2"><a href="danantara-related-buzzer-activity-on-danantara-trust/">Danantara-related buzzer activity on Danantara Trust Indonesia launch.</a></h2><p class="label">Published 19 October 2026</p><p>On 17/9/2026, we have detected a significant activity on Twitter on a possible amplification of certain keywords related to Danantara Trust Indonesia. Two keywords that came to our attention are &quot;Danantara Trust Indonesia&quot; and #BaktiNyataDanantara. At a glance, these two.</p></li></ul>
+<h1 class="h1">Disseminations of Reports</h1><div class="search" id="search" hidden><label for="q">Search reports</label><div class="search-row"><div class="search-box"><svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><circle cx="11" cy="11" r="7" fill="none" stroke="currentColor" stroke-width="2"/><path d="m20 20-4-4" stroke="currentColor" stroke-width="2"/></svg><input id="q" type="search" autocomplete="off" placeholder="Title or introduction"></div><button type="button" class="btn" id="clear" hidden>Clear search</button><p id="found" aria-live="polite"></p></div></div><ul class="cards" id="cards"><li class="panel card"><p class="label">19 October 2026</p><h2 class="h2"><a href="20261019-83f7/">Danantara-related buzzer activity on Danantara Trust Indonesia launch</a></h2><p>On 17/9/2026, we have detected a significant activity on Twitter on a possible amplification of certain keywords related to Danantara Trust Indonesia. Two keywords that came to.</p></li></ul><section class="sec" id="list" aria-labelledby="list-h" hidden><h2 class="sec-h" id="list-h">Earlier reports</h2><div class="chart-box"><table class="data list"><thead><tr><th scope="col">Title</th><th scope="col">Authors</th><th scope="col">Published</th></tr></thead><tbody><tr data-q="danantara-related buzzer activity on danantara trust indonesia launch on 17/9/2026, we have detected a significant activity on twitter on a possible amplification of certain keywords related to danantara trust indonesia. two keywords that came to our attention are &quot;danantara trust indonesia&quot; and #baktinyatadanantara. at a glance, these two keywords can be perceived as an amplified trending topic. we suspect this amplification was carried out to build a perception of public trust in relation to the philanthropic arm of danantara." hidden><td><a href="20261019-83f7/">Danantara-related buzzer activity on Danantara Trust Indonesia launch</a></td><td></td><td>19 October 2026</td></tr></tbody></table></div><nav class="pager" id="pager" aria-label="Pages"></nav></section><script>(() => {
+  const q = document.getElementById('q'), found = document.getElementById('found'), clear = document.getElementById('clear');
+  const cards = document.getElementById('cards'), list = document.getElementById('list'), pager = document.getElementById('pager');
+  const rows = [...list.querySelectorAll('tbody tr')], per = 10;
+  let at = 1;
+  const draw = () => {
+    const words = q.value.toLowerCase().split(/\s+/).filter(Boolean);
+    const hits = words.length ? rows.filter(r => words.every(w => r.dataset.q.includes(w))) : rows.slice(3);
+    const pages = Math.ceil(hits.length / per);
+    at = Math.min(at, pages) || 1;
+    const shown = hits.slice((at - 1) * per, at * per);
+    rows.forEach(r => r.hidden = !shown.includes(r));
+    cards.hidden = words.length > 0;
+    list.hidden = !hits.length;
+    document.getElementById('list-h').textContent = words.length ? 'Search results' : 'Earlier reports';
+    found.textContent = !words.length ? '' : hits.length ? `${hits.length} ${hits.length === 1 ? 'report' : 'reports'} found`
+      : 'No reports match. Try other words.';
+    clear.hidden = !words.length;
+    // ponytail: one button per page, fine for a few dozen pages; add gaps like Mantine's Pagination past that
+    pager.replaceChildren(...(pages > 1 ? ['prev', ...Array.from({length: pages}, (_, i) => i + 1), 'next'] : []).map(p => {
+      const b = Object.assign(document.createElement('button'), {type: 'button', className: 'btn',
+        textContent: {prev: 'Previous', next: 'Next'}[p] || p});
+      b.dataset.p = p;
+      if (p === at) b.setAttribute('aria-current', 'page');
+      if (typeof p === 'number') b.setAttribute('aria-label', `Page ${p}`);
+      b.disabled = p === 'prev' && at === 1 || p === 'next' && at === pages;
+      return b;
+    }));
+  };
+  pager.onclick = e => {
+    const k = e.target.closest('button')?.dataset.p;
+    if (!k) return;
+    at = k === 'prev' ? at - 1 : k === 'next' ? at + 1 : +k;
+    draw();
+    (pager.querySelector(`[data-p="${k}"]:not(:disabled)`) || pager.querySelector('[aria-current]')).focus();
+  };
+  q.oninput = () => {
+    at = 1;
+    draw();
+    history.replaceState(null, '', q.value.trim() ? '?q=' + encodeURIComponent(q.value.trim()) : location.pathname);
+  };
+  clear.onclick = () => { q.value = ''; q.oninput(); q.focus(); };
+  q.value = new URLSearchParams(location.search).get('q') || '';
+  document.getElementById('search').hidden = false;
+  draw();
+})();</script>
 </main>
-<footer class="site-foot label">Lokanetra Information Observatory. Made with Interlace Suite.</footer>
+<footer class="site-foot label"><p>Lokanetra Information Observatory. Made with Interlace Suite.</p></footer>
 </body>
 </html>

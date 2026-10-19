@@ -239,8 +239,28 @@ main:has(.doc) { max-width: 1200px; }
 .md table { border-collapse: collapse; }
 .md th, .md td { padding: var(--space-1) var(--space-2); border-bottom: 1px solid var(--line); text-align: left; }
 .md code { font-family: var(--mono); font-size: 14px; }
-.report-list { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: var(--space-3); }
-.report-list p { margin: 0; }
+.byline p, .card p, .search p, .site-foot p { margin: 0; }
+.actions { display: flex; flex-wrap: wrap; gap: var(--space-2); }
+/* Reports list, after Mantine's Card, TextInput, Table and Pagination */
+.search { display: flex; flex-direction: column; gap: var(--space-1); }
+.search-row { display: flex; flex-wrap: wrap; align-items: center; gap: var(--space-2) var(--space-3); }
+.search-box { position: relative; flex: 1 1 280px; max-width: 480px; }
+.search-box svg { position: absolute; left: var(--space-3); top: 50%; transform: translateY(-50%); color: var(--text-2); pointer-events: none; }
+.search-box input { box-sizing: border-box; width: 100%; min-height: 44px; padding: 0 var(--space-3) 0 calc(var(--space-3) * 2 + 16px); font: inherit; font-size: 16px; color: var(--text); background: var(--surface); border: 1px solid var(--line-strong); border-radius: var(--radius-control); }
+.search-row .btn { min-height: 44px; }
+.cards { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 260px), 1fr)); gap: var(--space-3); }
+.card { position: relative; }
+.card:hover { border-color: var(--line-strong); }
+.card h2 a::after { content: ''; position: absolute; inset: 0; } /* the whole card opens the report */
+.search[hidden], .cards[hidden], .sec[hidden] { display: none; }
+.list { font-size: 14px; }
+.list td { white-space: normal; padding-top: var(--space-1); padding-bottom: var(--space-1); }
+.list td:last-child { white-space: nowrap; }
+.pager { display: flex; flex-wrap: wrap; gap: var(--space-1); }
+.pager:empty { display: none; }
+.pager .btn { min-width: 36px; min-height: 36px; }
+.pager .btn[aria-current] { background: var(--accent); color: var(--on-accent); border-color: var(--accent); }
+.site-foot nav { display: flex; flex-wrap: wrap; gap: var(--space-1) var(--space-4); margin-bottom: var(--space-2); }
 .data { width: 100%; border-collapse: collapse; font-size: 13px; }
 .data th, .data td { padding: 2px var(--space-2); height: 28px; border-bottom: 1px solid var(--line); text-align: left; white-space: nowrap; }
 .data thead th { color: var(--text-2); background: var(--subtle); font-size: 12px; }
