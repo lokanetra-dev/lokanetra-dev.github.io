@@ -1,0 +1,38 @@
+# Pushed by Interlace Suite with every sync (suite/site/pages.yml). Prints each report to report.pdf
+# with the runner's Chrome, then publishes the site on GitHub Pages. Pages source: GitHub Actions.
+name: Publish
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+concurrency:
+  group: pages
+  cancel-in-progress: true
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - uses: actions/checkout@v5
+      - name: Print reports to PDF
+        run: |
+          python3 -m http.server 8000 >/dev/null 2>&1 &
+          sleep 2
+          shopt -s nullglob
+          for page in reports/*/index.html; do
+            dir=$(dirname "$page")
+            google-chrome --headless=new --disable-gpu --no-sandbox --no-pdf-header-footer \
+              --virtual-time-budget=10000 --print-to-pdf="$dir/report.pdf" "http://localhost:8000/$dir/"
+          done
+      - uses: actions/configure-pages@v5
+      - uses: actions/upload-pages-artifact@v4
+        with:
+          path: .
+      - id: deployment
+        uses: actions/deploy-pages@v4
