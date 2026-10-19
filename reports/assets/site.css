@@ -259,6 +259,7 @@ main:has(> .band) { max-width: none; padding: 0; gap: 0; }
 .md th, .md td { padding: var(--space-1) var(--space-2); border-bottom: 1px solid var(--line); text-align: left; }
 .md code { font-family: var(--mono); font-size: 14px; }
 .byline { font-size: 16px; line-height: 24px; }
+.orcid { display: inline-flex; vertical-align: -2px; margin-left: var(--space-1); }
 .byline p, .card p, .search p, .site-foot p { margin: 0; }
 .actions { display: flex; flex-wrap: wrap; gap: var(--space-2); }
 /* Search bar under the hero */
