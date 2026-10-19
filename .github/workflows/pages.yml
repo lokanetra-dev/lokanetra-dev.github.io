@@ -1,0 +1,59 @@
+# Pushed by Interlace Suite with every sync (suite/site/pages.yml). Builds the owner's site when the repository
+# has a package.json (npm run build into dist/, Astro's default) and adds reports/ and the footer pages
+# (privacy/, tos/, disclaimer/) to it, prints each report to
+# report.pdf with the runner's Chrome, then publishes the site on GitHub Pages. Pages source: GitHub Actions.
+# This is the repository's only Pages workflow: a second one would replace the site with its own build.
+name: Publish
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+concurrency:
+  group: pages
+  cancel-in-progress: true
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - uses: actions/checkout@v5
+      - if: hashFiles('package.json') != ''
+        uses: actions/setup-node@v5
+        with:
+          node-version: 22
+          cache: npm
+      - name: Build the site
+        run: |
+          if [ -f package.json ]; then
+            npm ci
+            npm run build
+            for d in reports privacy tos disclaimer; do
+              if [ -d "$d" ]; then cp -r "$d" dist/; fi
+            done
+            echo "SITE=dist" >> "$GITHUB_ENV"
+          else
+            echo "SITE=." >> "$GITHUB_ENV"
+          fi
+      - name: Print reports to PDF
+        run: |
+          cd "$SITE"
+          python3 -m http.server 8000 >/dev/null 2>&1 &
+          sleep 2
+          shopt -s nullglob
+          for page in reports/*/index.html; do
+            dir=$(dirname "$page")
+            google-chrome --headless=new --disable-gpu --no-sandbox --no-pdf-header-footer \
+              --virtual-time-budget=10000 --print-to-pdf="$dir/report.pdf" "http://localhost:8000/$dir/"
+          done
+      - uses: actions/configure-pages@v5
+      - uses: actions/upload-pages-artifact@v4
+        with:
+          path: ${{ env.SITE }}
+      - id: deployment
+        uses: actions/deploy-pages@v4
