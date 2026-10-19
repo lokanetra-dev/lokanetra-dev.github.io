@@ -7,6 +7,7 @@ const {
 	title = siteConfig.title,
 	description = siteConfig.description,
 	showFooterCta = true,
+	footer = true,
 	noindex = false,
 	ogType = 'website',
 	ogImageAlt = siteConfig.title,
@@ -100,7 +101,7 @@ const schemaData =
 	</head>
 	<body>
 		<slot />
-		<SiteFooter showCta={showFooterCta} />
+		{footer && <SiteFooter showCta={showFooterCta} />}
 		<script src="/cookie-consent.js" defer></script>
 		<script is:inline>
 			(() => {
