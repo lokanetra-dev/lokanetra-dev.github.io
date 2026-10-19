@@ -1,33 +1,114 @@
 ---
-import Layout from '../layouts/Layout.astro';
 ---
 
-<Layout
-	title="Open Lokanetra Products"
-	description="Page for public access to selected web-apps, datasets, and github repo from Lokanetra Information Observatory."
-	footer={false}
->
-	<main class="home">
-		<h1 class="display-title"><a href="/reports/">Open Lokanetra Products</a></h1>
-	</main>
-</Layout>
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<meta name="color-scheme" content="light" />
+		<meta
+			name="description"
+			content="Page for public access to selected web-apps, datasets, and github repo from Lokanetra Information Observatory."
+		/>
+		<link rel="icon" href="data:," />
+		<title>Open Lokanetra Products</title>
+	</head>
+	<body>
+		<header class="topbar">
+			<div class="wrap">
+				<a class="brand" href="/"><img src="/logo/lokanetra.png" alt="Lokanetra Information Observatory, home" /></a>
+				<nav aria-label="Site"><a href="/reports/">Reports</a></nav>
+			</div>
+		</header>
+		<main>
+			<h1>Open Lokanetra Products (OLP)</h1>
+			<a class="big" href="/reports/">reports</a>
+		</main>
+	</body>
+</html>
 
-<style>
-	.home {
+<style is:global>
+	/* Top bar copied from the Suite's site.css so the home page matches /reports */
+	@font-face {
+		font-family: 'Alte Haas Grotesk';
+		src: url('/fonts/AlteHaasGroteskRegular.ttf') format('truetype');
+		font-weight: 400;
+	}
+
+	body {
+		margin: 0;
 		min-height: 100vh;
-		display: grid;
-		place-items: center;
-		padding: 0 1.5rem;
+		display: flex;
+		flex-direction: column;
+		font-family: 'Alte Haas Grotesk', Helvetica, Arial, sans-serif;
+		color: #0f172a;
+		background: #fff;
+	}
+
+	.wrap {
+		box-sizing: border-box;
+		max-width: 1280px;
+		margin: 0 auto;
+		padding: 0 32px;
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		gap: 16px;
+		min-height: 72px;
+	}
+
+	.topbar {
+		border-bottom: 1px solid #e2e8f0;
+	}
+
+	.brand img {
+		display: block;
+		height: 40px;
+	}
+
+	.topbar nav a {
+		font-size: 16px;
+		color: #0f172a;
+		text-decoration: none;
+	}
+
+	.topbar nav a:hover {
+		text-decoration: underline;
+	}
+
+	main {
+		flex: 1;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		justify-content: center;
+		gap: 16px;
+		padding: 32px;
 		text-align: center;
 	}
 
-	.home .display-title {
+	h1,
+	.big {
 		margin: 0;
-		font-size: clamp(3rem, 9vw, 8rem);
+		font-size: clamp(2.5rem, 6vw, 6rem);
+		font-weight: 400;
+		line-height: 1.02;
+		letter-spacing: -0.05em;
+		color: #0f172a;
 	}
 
-	.home a {
-		color: inherit;
-		text-decoration: none;
+	.big {
+		text-decoration: underline dotted;
+		text-decoration-thickness: 0.06em;
+		text-underline-offset: 0.12em;
+	}
+
+	@media (max-width: 599px) {
+		.wrap,
+		main {
+			padding-left: 16px;
+			padding-right: 16px;
+		}
 	}
 </style>
