@@ -51,10 +51,11 @@ export const siteConfig: SiteConfig = {
 		{ href: 'https://lokanetra/privacy', label: 'Privacy' },
 		{ href: 'https://lokanetra/terms', label: 'Terms' },
 	],
+	// Interlace Suite publishes these pages; edit them under Reports, Footer pages.
 	legalLinks: [
-		{ href: 'https://lokanetra/cookies', label: 'Cookies' },
-		{ href: 'https://lokanetra/privacy', label: 'Privacy' },
-		{ href: 'https://lokanetra/terms', label: 'Terms' },
+		{ href: '/privacy/', label: 'Privacy policy' },
+		{ href: '/tos/', label: 'Terms of service' },
+		{ href: '/disclaimer/', label: 'Disclaimer' },
 	],
 	socialLinks: [
 		{ href: 'https://www.lokanetra.dev/', label: 'Homepage' },
