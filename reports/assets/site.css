@@ -124,6 +124,9 @@ body:has(.login) { background: var(--subtle); }
 .bars thead th, .heat thead th { font-size: 12px; color: var(--text-2); border-bottom: 1px solid var(--line); }
 .bars tbody th, .heat tbody th { color: var(--text); max-width: 16em; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 .bars .bar-cell { width: 60%; }
+.links tbody th { max-width: none; white-space: normal; overflow-wrap: anywhere; }
+.links .bar-cell { width: 30%; }
+.cloud { display: flex; flex-wrap: wrap; align-items: baseline; gap: var(--space-1) var(--space-3); line-height: 1.2; margin: 0; }
 .bar { display: block; height: 12px; background: var(--cat-1); min-width: 1px; }
 .bars .num, .heat .num { text-align: right; font-variant-numeric: tabular-nums; }
 .heat td { border: 2px solid var(--surface); }
