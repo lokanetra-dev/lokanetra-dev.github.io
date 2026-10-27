@@ -260,6 +260,7 @@ main:has(> .band) { max-width: none; padding: 0; gap: 0; }
 .md > :first-child { margin-top: 0; }
 .md h1, .md h2, .md h3, .md h4 { font-size: 18px; line-height: 24px; font-weight: 400; margin: var(--space-4) 0 var(--space-2); }
 .md p, .md ul, .md ol, .md table { margin: 0 0 var(--space-3); }
+.md a { overflow-wrap: anywhere; }
 .md table { border-collapse: collapse; }
 .md th, .md td { padding: var(--space-1) var(--space-2); border-bottom: 1px solid var(--line); text-align: left; }
 .md code { font-family: var(--mono); font-size: 14px; }
