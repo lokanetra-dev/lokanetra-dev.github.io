@@ -1,5 +1,5 @@
 # Pushed by Interlace Suite with every sync (suite/site/pages.yml). Builds the owner's site when the repository
-# has a package.json (npm run build into dist/, Astro's default) and adds reports/ and the footer pages
+# has a package.json (npm run build into dist/, Astro's default) and adds reports/, shadowcabinet/ and the footer pages
 # (privacy/, tos/, disclaimer/) to it, prints each report to
 # report.pdf with the runner's Chrome, then publishes the site on GitHub Pages. Pages source: GitHub Actions.
 # This is the repository's only Pages workflow: a second one would replace the site with its own build.
@@ -33,7 +33,7 @@ jobs:
           if [ -f package.json ]; then
             npm ci
             npm run build
-            for d in reports privacy tos disclaimer; do
+            for d in reports shadowcabinet privacy tos disclaimer; do
               if [ -d "$d" ]; then cp -r "$d" dist/; fi
             done
             echo "SITE=dist" >> "$GITHUB_ENV"

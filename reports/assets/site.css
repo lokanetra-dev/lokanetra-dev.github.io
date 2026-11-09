@@ -343,3 +343,14 @@ a.btn { display: inline-flex; align-items: center; text-decoration: none; }
   .panel, .tier, figure, tr { break-inside: avoid; }
   a { color: var(--text); }
 }
+/* Shadow cabinet: filters under the hero, statements with their pictures and references */
+.sc-filters label { display: flex; flex-direction: column; gap: var(--space-1); font-size: 14px; color: var(--text-2); }
+.sc-filters input, .sc-filters select { box-sizing: border-box; min-height: 44px; padding: 0 var(--space-3); font: inherit; font-size: 16px; color: var(--text); background: var(--surface); border: 1px solid var(--line-strong); border-radius: var(--radius-control); }
+.sc-filters label:first-child { flex: 1 1 260px; max-width: 420px; }
+.sc-filters .btn { align-self: flex-end; }
+.sc-entry { display: flex; flex-direction: column; gap: var(--space-2); padding-bottom: var(--space-4); border-bottom: 1px solid var(--line); }
+.sc-entry:last-of-type { border-bottom: 0; }
+.topbar nav { display: flex; flex-wrap: wrap; gap: var(--space-6); }
+.sc-pics { display: flex; flex-wrap: wrap; gap: var(--space-2); }
+.sc-pics img { display: block; max-width: min(100%, 320px); max-height: 240px; border: 1px solid var(--line); border-radius: var(--radius-control); }
+.sc-refs { margin: 0; padding-left: var(--space-6); overflow-wrap: anywhere; }
