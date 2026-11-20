@@ -354,3 +354,18 @@ a.btn { display: inline-flex; align-items: center; text-decoration: none; }
 .sc-pics { display: flex; flex-wrap: wrap; gap: var(--space-2); }
 .sc-pics img { display: block; max-width: min(100%, 320px); max-height: 240px; border: 1px solid var(--line); border-radius: var(--radius-control); }
 .sc-refs { margin: 0; padding-left: var(--space-6); overflow-wrap: anywhere; }
+/* Faces and emblems: a portrait or agency mark, initials when none is shipped */
+.sc-ava { box-sizing: border-box; width: 28px; height: 28px; border-radius: 50%; object-fit: contain; background: var(--surface); border: 1px solid var(--line); flex-shrink: 0; }
+.sc-ava-txt { display: inline-flex; align-items: center; justify-content: center; font-size: 11px; color: var(--text-2); background: var(--subtle); }
+.sc-ava-lg { width: 72px; height: 72px; object-fit: cover; font-size: 24px; }
+.sc-faces { display: flex; align-items: center; flex-wrap: wrap; gap: var(--space-1); }
+.sc-who { display: flex; align-items: center; gap: var(--space-3); }
+/* Mechanism: headline numbers, then member cards with agency emblem chips */
+.sc-stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: var(--space-6); }
+.sc-stat-n { margin: 0; font-size: 48px; line-height: 52px; letter-spacing: -.02em; }
+.sc-member { min-height: 0; }
+.sc-logos { display: flex; flex-wrap: wrap; gap: var(--space-2); }
+.sc-logo { display: inline-flex; align-items: center; gap: var(--space-2); max-width: 100%; border: 1px solid var(--line); border-radius: 999px; padding: 2px 12px 2px 2px; font-size: 13px; line-height: 17px; }
+.sc-logo .sc-ava { width: 24px; height: 24px; }
+.sc-member details p.label { margin: var(--space-3) 0 var(--space-1); }
+.sc-member .md { font-size: 14px; line-height: 21px; }
